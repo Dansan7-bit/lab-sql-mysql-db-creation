@@ -1,21 +1,37 @@
 -- Active: 1721290976264@@127.0.0.1@3306
-CREATE DATABASE dealership;
+CREATE DATABASE dealership_1;
 USE dealership;
-CREATE TABLE cars (card_id INT, manufacturer VARCHAR (250));
-CREATE TABLE customers (customer_ID VARCHAR (250), name VARCHAR (250), phone_number INT, email VARCHAR (250), address VARCHAR (250),
-city VARCHAR (250), state_province VARCHAR (250), country VARCHAR(250), zip_postal_code INT);
-CREATE TABLE Salespersons (staff_ID INT, name VARCHAR (20), store VARCHAR (20));
-CREATE TABLE Invoices (invoice_number INT, invoice_dates DATE);
-ALTER TABLE Invoices ADD COLUMN car INT, ADD COLUMN customer INT, ADD COLUMN salesperson INT;
-ALTER TABLE cars
-CHANGE card_id vin VARCHAR (20);
-ALTER TABLE cars ADD COLUMN model VARCHAR (20), ADD COLUMN year INT, ADD COLUMN color VARCHAR (10);
-ALTER TABLE cars
-CHANGE vin vin VARCHAR (30);
-ALTER TABLE cars
-CHANGE manufacturer manufacturer VARCHAR (50);
-ALTER TABLE cars
-CHANGE model model VARCHAR (30);
-ALTER TABLE cars
-CHANGE year year_car INT (30);
-ALTER TABLE cars ADD COLUMN car_id INT;
+CREATE TABLE cars (
+    vin VARCHAR(30) PRIMARY KEY,
+    manufacturer VARCHAR(50),
+    model VARCHAR(30),
+    year_car INT(4),
+    color VARCHAR(10),
+    car_id INT
+);
+CREATE TABLE customers (
+    customer_ID INT PRIMARY KEY,
+    name VARCHAR(50),
+    phone_number VARCHAR(20),
+    email VARCHAR(50),
+    address VARCHAR(100),
+    city VARCHAR(50),
+    state_province VARCHAR(50),
+    country VARCHAR(50),
+    zip_postal_code VARCHAR(20)
+);
+CREATE TABLE Salespersons (
+    staff_ID INT PRIMARY KEY,
+    name VARCHAR(50),
+    store VARCHAR(50)
+);
+CREATE TABLE Invoices (
+    invoice_number INT PRIMARY KEY,
+    invoice_dates DATE,
+    car_id INT,
+    customer INT,
+    salesperson INT,
+    FOREIGN KEY (car_id) REFERENCES cars(vin),
+    FOREIGN KEY (customer) REFERENCES customers(customer_ID),
+    FOREIGN KEY (salesperson) REFERENCES Salespersons(staff_ID)
+);
