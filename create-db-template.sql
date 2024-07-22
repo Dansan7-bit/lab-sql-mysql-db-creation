@@ -1,6 +1,7 @@
 -- Active: 1721290976264@@127.0.0.1@3306
 CREATE DATABASE dealership;
 USE dealership;
+
 CREATE TABLE cars (
     vin VARCHAR(30) PRIMARY KEY,
     manufacturer VARCHAR(50),
