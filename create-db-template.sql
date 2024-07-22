@@ -1,5 +1,5 @@
 -- Active: 1721290976264@@127.0.0.1@3306
-CREATE DATABASE dealership_1;
+CREATE DATABASE dealership;
 USE dealership;
 CREATE TABLE cars (
     vin VARCHAR(30) PRIMARY KEY,
@@ -7,7 +7,7 @@ CREATE TABLE cars (
     model VARCHAR(30),
     year_car INT(4),
     color VARCHAR(10),
-    car_id INT
+    id INT
 );
 CREATE TABLE customers (
     customer_ID INT PRIMARY KEY,
